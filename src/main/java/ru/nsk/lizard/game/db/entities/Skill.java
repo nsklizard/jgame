@@ -27,8 +27,8 @@ public class Skill extends BaseEntity{
     @Column(name = "earth")
     private long earth;
 
-    @Column(name = "ether")
-    private long ether;
+    @Column(name = "poison")
+    private long poison;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
@@ -37,13 +37,13 @@ public class Skill extends BaseEntity{
 
     public Skill(){}
 
-    public Skill(String name, long fire, long water, long air, long earth, long ether, SkillType type) {
+    public Skill(String name, long fire, long water, long air, long earth, long poison, SkillType type) {
         this.name = name;
         this.fire = fire;
         this.water = water;
         this.air = air;
         this.earth = earth;
-        this.ether = ether;
+        this.poison = poison;
         this.type = type;
     }
 
@@ -79,12 +79,12 @@ public class Skill extends BaseEntity{
         this.earth = earth;
     }
 
-    public long getEther() {
-        return ether;
+    public long getPoison() {
+        return poison;
     }
 
-    public void setEther(long ether) {
-        this.ether = ether;
+    public void setPoison(long poison) {
+        this.poison = poison;
     }
 
     public String getName() {

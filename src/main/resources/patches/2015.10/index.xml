@@ -6,9 +6,18 @@
 	  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
 
-
     <changeSet id="2015-10-11--1551-dkim" author="dkim">
         <comment>Init ORMa</comment>
         <sqlFile encoding="utf8" path="patches/2015.10/2015-10-11--1551-dkim.sql"/>
+    </changeSet>
+
+    <changeSet id="2015-10-11--2357-dkim" author="dkim">
+        <comment>Rename to poison. Added map</comment>
+        <sqlFile encoding="utf8" path="patches/2015.10/2015-10-11--2357-dkim.sql"/>
+    </changeSet>
+
+    <changeSet id="2015-10-12--0013-dkim" author="dkim">
+        <comment>Default 0</comment>
+        <sqlFile encoding="utf8" path="patches/2015.10/2015-10-12--0013-dkim.sql"/>
     </changeSet>
 </databaseChangeLog>

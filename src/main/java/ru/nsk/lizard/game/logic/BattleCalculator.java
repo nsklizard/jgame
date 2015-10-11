@@ -45,13 +45,13 @@ public class BattleCalculator {
                 c1AttackWater += s.getWater() * c1Skills.get(s);
                 c1AttackAir += s.getAir() * c1Skills.get(s);
                 c1AttackEarth += s.getEarth() * c1Skills.get(s);
-                c1AttackEther += s.getEther() * c1Skills.get(s);
+                c1AttackEther += s.getPoison() * c1Skills.get(s);
             } else if (s.getType().equals(SkillType.DEFENCE)) {
                 c1DefenceFire += s.getFire() * c1Skills.get(s);
                 c1DefenceWater += s.getWater() * c1Skills.get(s);
                 c1DefenceAir += s.getAir() * c1Skills.get(s);
                 c1DefenceEarth += s.getEarth() * c1Skills.get(s);
-                c1DefenceEther += s.getEther() * c1Skills.get(s);
+                c1DefenceEther += s.getPoison() * c1Skills.get(s);
             }
         }
 
@@ -63,13 +63,13 @@ public class BattleCalculator {
                 c2AttackWater += s.getWater() * c2Skills.get(s);
                 c2AttackAir += s.getAir() * c2Skills.get(s);
                 c2AttackEarth += s.getEarth() * c2Skills.get(s);
-                c2AttackEther += s.getEther() * c2Skills.get(s);
+                c2AttackEther += s.getPoison() * c2Skills.get(s);
             } else if (s.getType().equals(SkillType.DEFENCE)) {
                 c2DefenceFire += s.getFire() * c2Skills.get(s);
                 c2DefenceWater += s.getWater() * c2Skills.get(s);
                 c2DefenceAir += s.getAir() * c2Skills.get(s);
                 c2DefenceEarth += s.getEarth() * c2Skills.get(s);
-                c2DefenceEther += s.getEther() * c2Skills.get(s);
+                c2DefenceEther += s.getPoison() * c2Skills.get(s);
             }
         }
 

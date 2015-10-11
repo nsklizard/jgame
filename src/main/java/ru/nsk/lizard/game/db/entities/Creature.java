@@ -1,7 +1,10 @@
 package ru.nsk.lizard.game.db.entities;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dkim on 12.05.2015.

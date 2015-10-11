@@ -31,7 +31,8 @@ public class GameRESTFunctionsController {
     public ResponseEntity<String> settleCreature(@RequestParam(value = "x") int x,
                                  @RequestParam(value = "y") int y,
                                  @RequestParam(value = "creatureId") long creatureId) {
-        gameCore.settleCreature(x, y, creatureId);
+        //TODO: проверка входных значений
+        gameCore.settleCreature(x, y, creatureService.findById(creatureId));
         return new ResponseEntity<String>("creature with id=" + creatureId + " settled in x=" + x + ", y=" + y, HttpStatus.OK);
     }
 

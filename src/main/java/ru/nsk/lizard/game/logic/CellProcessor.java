@@ -3,6 +3,7 @@ package ru.nsk.lizard.game.logic;
 
 import org.apache.log4j.Logger;
 import ru.nsk.lizard.game.db.entities.Creature;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,12 +12,19 @@ import java.util.List;
  */
 public class CellProcessor extends Thread {
     Logger log = Logger.getLogger(CellProcessor.class.getName());
+    private Object lock = new Object();
 
     private List<Creature> queue = new LinkedList<Creature>();
     private Creature owner = null;
+    private GameCore gameCore;
+    private int x;
+    private int y;
 
-    private Object lock = new Object();
-
+    public CellProcessor(int x, int y, GameCore gameCore) {
+        this.x = x;
+        this.y = y;
+        this.gameCore = gameCore;
+    }
 
     public Creature getOwner(){
         return owner;
@@ -53,7 +61,26 @@ public class CellProcessor extends Thread {
                 } else{
                     owner = BattleCalculator.fight(attacker, owner);
                     log.debug("CellProcessor new settler"+owner.getId()+" "+owner.getName());
+                    spread();
                 }
+            }
+        }
+    }
+
+    /**
+     * Расселить в соседние клетки
+     * 1 1 1
+     * 1 0 1
+     * 1 1 1
+     *
+     * 8-связность
+     */
+    private void spread(){
+        for (int xCoord = x-1; xCoord<=x+1; xCoord++){
+            for (int yCoord = y-1; yCoord<=y+1; yCoord++){
+                if (x==xCoord && y==yCoord) continue;
+                gameCore.settleCreature(xCoord, yCoord, owner);
+                log.trace("Spreaded to x="+xCoord+", y="+yCoord);
             }
         }
     }

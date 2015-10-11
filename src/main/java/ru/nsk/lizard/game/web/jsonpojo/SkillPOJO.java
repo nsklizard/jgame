@@ -1,12 +1,6 @@
 package ru.nsk.lizard.game.web.jsonpojo;
 
-import org.hibernate.annotations.Type;
 import ru.nsk.lizard.game.db.entities.Skill;
-import ru.nsk.lizard.game.db.enums.SkillType;
-
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 /**
  * Created by lizard on 11.10.2015.
@@ -17,7 +11,7 @@ public class SkillPOJO {
     private long water;
     private long air;
     private long earth;
-    private long ether;
+    private long poison;
     private String type;
 
     public SkillPOJO() {
@@ -29,7 +23,7 @@ public class SkillPOJO {
         this.water = skill.getWater();
         this.air = skill.getAir();
         this.earth = skill.getEarth();
-        this.ether = skill.getEther();
+        this.poison = skill.getPoison();
         this.type = skill.getType().name();
     }
 
@@ -73,12 +67,12 @@ public class SkillPOJO {
         this.earth = earth;
     }
 
-    public long getEther() {
-        return ether;
+    public long getPoison() {
+        return poison;
     }
 
-    public void setEther(long ether) {
-        this.ether = ether;
+    public void setPoison(long poison) {
+        this.poison = poison;
     }
 
     public String getType() {

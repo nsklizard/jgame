@@ -38,14 +38,15 @@ public class GameCore {
         cp = new CellProcessor[width][length];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < length; y++) {
-                cp[x][y] = new CellProcessor();
+                cp[x][y] = new CellProcessor(x,y,this);
                 cp[x][y].start();
             }
         }
     }
 
-    public void settleCreature(int x, int y, long creatureId) {
-        Creature creature = creatureService.findById(creatureId);
+    public void settleCreature(int x, int y, Creature creature) {
+        //TODO: сделать проверку на координаты
+//        Creature creature = creatureService.findById(creatureId);
         cp[x][y].addCreature(creature);
     }
 

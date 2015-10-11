@@ -8,9 +8,9 @@ import com.googlecode.genericdao.search.jpa.JPASearchProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import ru.nsk.lizard.game.db.common.Filter;
 import ru.nsk.lizard.game.db.entities.BaseEntity;
 import ru.nsk.lizard.game.db.services.BaseService;
-import ru.nsk.lizard.game.db.common.Filter;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
