@@ -24,5 +24,7 @@
         <url-pattern>/settleCreature</url-pattern>
         <url-pattern>/getSkills</url-pattern>
         <url-pattern>/greeting</url-pattern>
+        <url-pattern>/getCreature</url-pattern>
+        <url-pattern>/createCreature</url-pattern>
     </servlet-mapping>
 </web-app>

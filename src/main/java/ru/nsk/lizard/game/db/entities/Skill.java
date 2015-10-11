@@ -16,19 +16,19 @@ public class Skill extends BaseEntity{
     private String name;
 
     @Column(name = "fire")
-    private int fire;
+    private long fire;
 
     @Column(name = "water")
-    private int water;
+    private long water;
 
     @Column(name = "air")
-    private int air;
+    private long air;
 
     @Column(name = "earth")
-    private int earth;
+    private long earth;
 
     @Column(name = "ether")
-    private int ether;
+    private long ether;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
@@ -37,7 +37,7 @@ public class Skill extends BaseEntity{
 
     public Skill(){}
 
-    public Skill(String name, int fire, int water, int air, int earth, int ether, SkillType type) {
+    public Skill(String name, long fire, long water, long air, long earth, long ether, SkillType type) {
         this.name = name;
         this.fire = fire;
         this.water = water;
@@ -47,6 +47,46 @@ public class Skill extends BaseEntity{
         this.type = type;
     }
 
+    public long getFire() {
+        return fire;
+    }
+
+    public void setFire(long fire) {
+        this.fire = fire;
+    }
+
+    public long getWater() {
+        return water;
+    }
+
+    public void setWater(long water) {
+        this.water = water;
+    }
+
+    public long getAir() {
+        return air;
+    }
+
+    public void setAir(long air) {
+        this.air = air;
+    }
+
+    public long getEarth() {
+        return earth;
+    }
+
+    public void setEarth(long earth) {
+        this.earth = earth;
+    }
+
+    public long getEther() {
+        return ether;
+    }
+
+    public void setEther(long ether) {
+        this.ether = ether;
+    }
+
     public String getName() {
         return name;
     }
@@ -54,47 +94,6 @@ public class Skill extends BaseEntity{
     public void setName(String name) {
         this.name = name;
     }
-
-    public int getFire() {
-        return fire;
-    }
-
-    public void setFire(int fire) {
-        this.fire = fire;
-    }
-
-    public int getWater() {
-        return water;
-    }
-
-    public void setWater(int water) {
-        this.water = water;
-    }
-
-    public int getAir() {
-        return air;
-    }
-
-    public void setAir(int air) {
-        this.air = air;
-    }
-
-    public int getEarth() {
-        return earth;
-    }
-
-    public void setEarth(int earth) {
-        this.earth = earth;
-    }
-
-    public int getEther() {
-        return ether;
-    }
-
-    public void setEther(int ether) {
-        this.ether = ether;
-    }
-
     public SkillType getType() {
         return type;
     }

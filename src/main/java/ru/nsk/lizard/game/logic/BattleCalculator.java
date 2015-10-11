@@ -59,17 +59,17 @@ public class BattleCalculator {
         Map<Skill, Long> c2Skills = defender.getSkills();
         for (Skill s : c2Skills.keySet()) {
             if (s.getType().equals(SkillType.OFFENSE)) {
-                c2AttackFire += s.getFire() * c1Skills.get(s);
-                c2AttackWater += s.getWater() * c1Skills.get(s);
-                c2AttackAir += s.getAir() * c1Skills.get(s);
-                c2AttackEarth += s.getEarth() * c1Skills.get(s);
-                c2AttackEther += s.getEther() * c1Skills.get(s);
+                c2AttackFire += s.getFire() * c2Skills.get(s);
+                c2AttackWater += s.getWater() * c2Skills.get(s);
+                c2AttackAir += s.getAir() * c2Skills.get(s);
+                c2AttackEarth += s.getEarth() * c2Skills.get(s);
+                c2AttackEther += s.getEther() * c2Skills.get(s);
             } else if (s.getType().equals(SkillType.DEFENCE)) {
-                c2DefenceFire += s.getFire() * c1Skills.get(s);
-                c2DefenceWater += s.getWater() * c1Skills.get(s);
-                c2DefenceAir += s.getAir() * c1Skills.get(s);
-                c2DefenceEarth += s.getEarth() * c1Skills.get(s);
-                c2DefenceEther += s.getEther() * c1Skills.get(s);
+                c2DefenceFire += s.getFire() * c2Skills.get(s);
+                c2DefenceWater += s.getWater() * c2Skills.get(s);
+                c2DefenceAir += s.getAir() * c2Skills.get(s);
+                c2DefenceEarth += s.getEarth() * c2Skills.get(s);
+                c2DefenceEther += s.getEther() * c2Skills.get(s);
             }
         }
 

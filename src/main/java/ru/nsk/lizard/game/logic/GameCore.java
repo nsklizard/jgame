@@ -30,35 +30,34 @@ public class GameCore {
     CellProcessor[][] cp = null;
 
     @PostConstruct
-    public void init(){
-        initMap(3,3);
+    public void init() {
+        initMap(3, 3);
     }
 
-    public void initMap(int width, int length){
+    public void initMap(int width, int length) {
         cp = new CellProcessor[width][length];
-        for (int x = 0;x<width;x++){
-            for (int y= 0; y<length; y++){
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < length; y++) {
                 cp[x][y] = new CellProcessor();
                 cp[x][y].start();
             }
         }
     }
 
-    public void settleCreature(int x, int y, long creatureId){
+    public void settleCreature(int x, int y, long creatureId) {
         Creature creature = creatureService.findById(creatureId);
         cp[x][y].addCreature(creature);
     }
 
-    public List<Skill> getSkills(){
+    public List<Skill> getSkills() {
         return skillService.search(new Filter());
     }
 
     /**
-     *
      * @param name
      * @param skills - <tt>Map</tt> <Skill Id, SkillPower>
      */
-    public void createCreature(String name, Map<Long, Long> skills){
+    public Long createCreature(String name, Map<Long, Long> skills) {
         Creature creature = new Creature();
         creature.setName(name);
 
@@ -66,11 +65,12 @@ public class GameCore {
             CreatureSkillLink link = new CreatureSkillLink();
             link.setSkill(skillService.findById(skillId));
             link.setCreature(creature);
-
+            link.setPower(skills.get(skillId));
             creature.getSkillLinks().add(link);
         }
 
-        creatureService.save(creature);
+        creature = creatureService.save(creature);
+        return creature == null ? null : creature.getId();
     }
 
 }

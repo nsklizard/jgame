@@ -33,6 +33,10 @@
         <property name="changeLog" value="classpath:patches/master.xml"/>
     </bean>
 
+    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="prefixJson" value="false"/>
+        <property name="supportedMediaTypes" value="application/json"/>
+    </bean>
 
 
 </beans>

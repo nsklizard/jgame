@@ -6,33 +6,20 @@ import javax.persistence.*;
  * Created by dkim on 09.10.2015.
  */
 @Entity
-@Table(name = "creature_skill_links")
-public class CreatureSkillLink {
+@Table(name="creature_skill_links")
+@SequenceGenerator(name = "default_gen", sequenceName = "creature_skill_links_id_seq", allocationSize = 1)
+public class CreatureSkillLink extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "creature_skill_links_id", unique = true, nullable = false)
-    private long creatureSkillLinkId;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "creature_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "creatureId", nullable = false)
     private Creature creature;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "skill_id", nullable = false)
+    @JoinColumn(name = "skillId", nullable = false)
     private Skill skill;
 
     @Column(name="power")
     private long power;
-
-
-    public long getCreatureSkillLinkId() {
-        return creatureSkillLinkId;
-    }
-
-    public void setCreatureSkillLinkId(long creatureSkillLinkId) {
-        this.creatureSkillLinkId = creatureSkillLinkId;
-    }
 
     public Creature getCreature() {
         return creature;
@@ -56,22 +43,5 @@ public class CreatureSkillLink {
 
     public void setPower(long power) {
         this.power = power;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        CreatureSkillLink that = (CreatureSkillLink) o;
-
-        if (creatureSkillLinkId != that.creatureSkillLinkId) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (creatureSkillLinkId ^ (creatureSkillLinkId >>> 32));
     }
 }
