@@ -1,5 +1,7 @@
 package ru.nsk.lizard.game.web;
 
+import com.google.gson.Gson;
+import jdk.nashorn.internal.ir.debug.JSONWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +29,11 @@ public class GameRESTFunctionsController {
     }
 
     @RequestMapping("/getSkills")
-    public List<Skill> getSkills() {
-        return gameCore.getSkills();
+    public String getSkills() {
+        Gson gson = new Gson();
+        List<Skill> skills = gameCore.getSkills();
+
+        String json = gson.toJson(skills);
+        return json;
     }
 }
