@@ -32,8 +32,10 @@ public class Skill extends BaseEntity{
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
-    @Type(type = "ru.nsk.lizard.game.db.enums.SkillType")
+    @Type(type = "ru.nsk.lizard.game.db.customtypes.SkillTypeEnumType")
     private SkillType type;
+
+    public Skill(){}
 
     public Skill(String name, int fire, int water, int air, int earth, int ether, SkillType type) {
         this.name = name;

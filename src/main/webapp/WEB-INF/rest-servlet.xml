@@ -19,20 +19,24 @@
     <mvc:annotation-driven/>
 
 
+    <import resource="applicationContext.xml"/>
+
+    <bean id="gameCore" class="ru.nsk.lizard.game.logic.GameCore"/>
+
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <bean id="actionProcessorLauncher" class="ru.nsk.lizard.game.logic.ActionProcessorLauncher"/>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/game"/>
         <property name="username" value="root"/>
         <property name="password" value="123123"/>
-    </bean>
+    </bean>-->
 
 
     <bean id="sessionFactory"
@@ -41,7 +45,8 @@
         <property name="packagesToScan" value="ru.nsk.lizard.game"/>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</prop>
                 <!--<prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/game</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
                 <prop key="hibernate.connection.username">root</prop>
@@ -71,7 +76,8 @@
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="showSql" value="true"/>
                 <property name="generateDdl" value="false"/>
-                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+                <!--<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>-->
             </bean>
         </property>
         <property name="jpaProperties">

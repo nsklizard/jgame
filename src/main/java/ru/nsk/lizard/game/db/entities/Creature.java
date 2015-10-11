@@ -1,10 +1,7 @@
 package ru.nsk.lizard.game.db.entities;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by dkim on 12.05.2015.
@@ -16,8 +13,8 @@ public class Creature extends BaseEntity{
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "creature", fetch = FetchType.EAGER)
-    private List<CreatureSkillLink> skillLinks;
+    @OneToMany(mappedBy = "creature", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<CreatureSkillLink> skillLinks = new LinkedList<>();
 
     /**
      *

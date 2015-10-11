@@ -20,11 +20,19 @@
     <context:component-scan base-package="ru.nsk.lizard.game"/>
     <mvc:annotation-driven/>
 
+    <import resource="dataSource.xml"/>
+
     <bean id="searchProcessor" class="com.googlecode.genericdao.search.jpa.JPASearchProcessor">
         <constructor-arg ref="metadataUtil" />
     </bean>
 
     <bean id="metadataUtil" class="com.googlecode.genericdao.search.jpa.JPAAnnotationMetadataUtil"/>
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase" >
+        <property name="dataSource" ref="dataSource"/>
+        <property name="changeLog" value="classpath:patches/master.xml"/>
+    </bean>
+
 
 
 </beans>

@@ -1,5 +1,6 @@
-package ru.nsk.lizard.game.db.services.impl;
+package ru.nsk.lizard.game.db.serviceimpl;
 
+import com.google.common.collect.Lists;
 import com.googlecode.genericdao.dao.jpa.GenericDAOImpl;
 import com.googlecode.genericdao.search.Search;
 import com.googlecode.genericdao.search.Sort;
@@ -9,7 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.nsk.lizard.game.db.entities.BaseEntity;
 import ru.nsk.lizard.game.db.services.BaseService;
-import ru.nsk.lizard.game.db.services.common.Filter;
+import ru.nsk.lizard.game.db.common.Filter;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -151,7 +152,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     }
 
     private static void processFilters(Search search, Filter... filters) {
-        processFilters(search, filters);
+        processFilters(search, Lists.newArrayList(filters));
     }
 
     private static void processFilters(Search search, List<Filter> filters) {

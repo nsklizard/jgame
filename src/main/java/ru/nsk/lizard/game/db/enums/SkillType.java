@@ -1,6 +1,6 @@
 package ru.nsk.lizard.game.db.enums;
 
-import ru.nsk.lizard.game.db.services.common.PersistentEnum;
+import ru.nsk.lizard.game.db.common.PersistentEnum;
 
 /**
  * Created by dkim on 07.10.2015.

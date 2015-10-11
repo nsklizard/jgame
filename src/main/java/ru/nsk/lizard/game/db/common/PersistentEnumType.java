@@ -1,4 +1,4 @@
-package ru.nsk.lizard.game.db.services.common;
+package ru.nsk.lizard.game.db.common;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;

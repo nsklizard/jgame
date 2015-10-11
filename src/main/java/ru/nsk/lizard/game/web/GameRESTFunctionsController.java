@@ -4,35 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.nsk.lizard.game.common.GameConstants;
-import ru.nsk.lizard.game.db.dao.impl.CreatureDAOJPAImpl;
-import ru.nsk.lizard.game.db.dao.GameMapDAO;
-import ru.nsk.lizard.game.logic.ActionProcessor;
-import ru.nsk.lizard.game.logic.FightJob;
+import ru.nsk.lizard.game.db.entities.Skill;
+import ru.nsk.lizard.game.logic.GameCore;
+
+import java.util.List;
 
 /**
- * Created by dmitr_000 on 20.05.2015.
+ * Created by dkim on 20.05.2015.
  */
 @RestController
 public class GameRESTFunctionsController {
 
     @Autowired
-    CreatureDAOJPAImpl creatureDAOJPAImpl;
-
-    @Autowired
-    GameMapDAO gameMapDAO;
-
-    @Autowired
-    ActionProcessor actionProcessor;
+    GameCore gameCore;
 
     @RequestMapping("/settleCreature")
     public String settleCreature(@RequestParam(value = "x") int x,
                                  @RequestParam(value = "y") int y,
                                  @RequestParam(value = "creatureId") long creatureId) {
-        if (x < 0 || y < 0 || creatureId <= 0 || x > GameConstants.WORLD_SIZE || y > GameConstants.WORLD_SIZE) {
-            return "failed to settle creature";
-        }
-        actionProcessor.queue.add(new FightJob(x, y, creatureDAOJPAImpl.find(creatureId), gameMapDAO));
+        gameCore.settleCreature(x, y, creatureId);
         return "creature with id=" + creatureId + " settled in x=" + x + ", y=" + y;
+    }
+
+    @RequestMapping("/getSkills")
+    public List<Skill> getSkills() {
+        return gameCore.getSkills();
     }
 }

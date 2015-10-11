@@ -1,18 +1,16 @@
 package ru.nsk.lizard.game.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.nsk.lizard.game.db.dao.UserDAO;
 
 import javax.transaction.Transactional;
 
 @RestController
 public class GreetingController {
 
-    @Autowired
-    UserDAO userDAO;
+//    @Autowired
+//    UserDAO userDAO;
 
     @RequestMapping("/greeting")
     @Transactional

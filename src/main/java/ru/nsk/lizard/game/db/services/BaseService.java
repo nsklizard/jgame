@@ -1,7 +1,7 @@
 package ru.nsk.lizard.game.db.services;
 
 import com.googlecode.genericdao.search.Sort;
-import ru.nsk.lizard.game.db.services.common.Filter;
+import ru.nsk.lizard.game.db.common.Filter;
 
 import javax.persistence.EntityManager;
 import java.util.List;
