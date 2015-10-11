@@ -1,30 +1,50 @@
 package ru.nsk.lizard.game.db.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+import ru.nsk.lizard.game.db.enums.SkillType;
+
+import javax.persistence.*;
 
 /**
  * Created by dkim on 12.05.2015.
  */
 @Entity
-public class Skill {
-    private long skillId;
+@Table(name = "skills")
+@SequenceGenerator(name = "default_gen", sequenceName = "skills_id_seq", allocationSize = 1)
+public class Skill extends BaseEntity{
+    @Column(name = "name")
     private String name;
 
-    @Id
-    @Column(name = "skillId")
-    public long getSkillId() {
-        return skillId;
+    @Column(name = "fire")
+    private int fire;
+
+    @Column(name = "water")
+    private int water;
+
+    @Column(name = "air")
+    private int air;
+
+    @Column(name = "earth")
+    private int earth;
+
+    @Column(name = "ether")
+    private int ether;
+
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    @Type(type = "ru.nsk.lizard.game.db.enums.SkillType")
+    private SkillType type;
+
+    public Skill(String name, int fire, int water, int air, int earth, int ether, SkillType type) {
+        this.name = name;
+        this.fire = fire;
+        this.water = water;
+        this.air = air;
+        this.earth = earth;
+        this.ether = ether;
+        this.type = type;
     }
 
-    public void setSkillId(long skillId) {
-        this.skillId = skillId;
-    }
-
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -33,23 +53,52 @@ public class Skill {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Skill skill = (Skill) o;
-
-        if (skillId != skill.skillId) return false;
-        if (name != null ? !name.equals(skill.name) : skill.name != null) return false;
-
-        return true;
+    public int getFire() {
+        return fire;
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (skillId ^ (skillId >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+    public void setFire(int fire) {
+        this.fire = fire;
     }
+
+    public int getWater() {
+        return water;
+    }
+
+    public void setWater(int water) {
+        this.water = water;
+    }
+
+    public int getAir() {
+        return air;
+    }
+
+    public void setAir(int air) {
+        this.air = air;
+    }
+
+    public int getEarth() {
+        return earth;
+    }
+
+    public void setEarth(int earth) {
+        this.earth = earth;
+    }
+
+    public int getEther() {
+        return ether;
+    }
+
+    public void setEther(int ether) {
+        this.ether = ether;
+    }
+
+    public SkillType getType() {
+        return type;
+    }
+
+    public void setType(SkillType type) {
+        this.type = type;
+    }
+
 }

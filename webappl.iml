@@ -20,7 +20,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -63,6 +63,10 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.1" level="project" />
     <orderEntry type="library" name="Maven: javax.persistence:persistence-api:1.0.2" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.genericdao:dao:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.genericdao:search:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.genericdao:search-jpa-hibernate:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.genericdao:search-hibernate:1.2.0" level="project" />
   </component>
 </module>
 

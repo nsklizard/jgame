@@ -5,12 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.nsk.lizard.game.common.GameConstants;
-import ru.nsk.lizard.game.db.dao.CreatureDAO;
+import ru.nsk.lizard.game.db.dao.impl.CreatureDAOJPAImpl;
 import ru.nsk.lizard.game.db.dao.GameMapDAO;
 import ru.nsk.lizard.game.db.entities.Creature;
 import ru.nsk.lizard.game.db.entities.Creatureconfig;
 import ru.nsk.lizard.game.db.services.GameMapService;
-import ru.nsk.lizard.game.db.services.impl.GameMapServiceImpl;
 import ru.nsk.lizard.game.logic.exceptions.CorruptedCreatureException;
 
 import java.util.List;
@@ -33,7 +32,7 @@ public class ActionProcessor extends Thread{
 //    }
 
     @Autowired
-    CreatureDAO creatureDAO;
+    CreatureDAOJPAImpl creatureDAOJPAImpl;
 
     @Autowired
     GameMapDAO gameMapDAO;
@@ -60,7 +59,7 @@ public class ActionProcessor extends Thread{
 
    @Transactional
     private void executeJob(FightJob job){
-       log.info(""+creatureDAO);
+       log.info(""+ creatureDAOJPAImpl);
 
         if (job.getX()<0 || job.getX()>= GameConstants.WORLD_SIZE || job.getY()<0 || job.getY()>=GameConstants.WORLD_SIZE){
             log.error("Invalid coords. x="+job.getX()+", y="+job.getY());
