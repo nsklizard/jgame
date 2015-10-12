@@ -25,4 +25,8 @@ public class GameMapServiceImpl extends BaseServiceImpl<GameMap, Long> implement
             return null;
         }
     }
+
+    public long getCreatureLandsCount(long creatureId){
+        return (long) em.createQuery("select count(id) from GameMap where creatureId = " + creatureId).getSingleResult();
+    }
 }

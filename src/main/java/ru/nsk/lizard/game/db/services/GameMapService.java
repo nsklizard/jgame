@@ -7,4 +7,5 @@ import ru.nsk.lizard.game.db.entities.GameMap;
  */
 public interface GameMapService extends BaseService<GameMap, Long> {
     public GameMap get(long x, long y);
+    public long getCreatureLandsCount(long creatureId);
 }

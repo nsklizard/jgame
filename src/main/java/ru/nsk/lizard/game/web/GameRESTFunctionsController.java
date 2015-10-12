@@ -1,6 +1,5 @@
 package ru.nsk.lizard.game.web;
 
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -86,6 +85,11 @@ public class GameRESTFunctionsController {
         } else {
             return new ResponseEntity<CreaturePOJO>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @RequestMapping("/getCreatureLandsCount")
+    public ResponseEntity<String> getCreatureLandsCount(@RequestParam(value = "id") long id) {
+        return new ResponseEntity<String>(String.valueOf(gameMapService.getCreatureLandsCount(id)), HttpStatus.OK);
     }
 
 }

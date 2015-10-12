@@ -26,5 +26,6 @@
         <url-pattern>/greeting</url-pattern>
         <url-pattern>/getCreature</url-pattern>
         <url-pattern>/createCreature</url-pattern>
+        <url-pattern>/getCreatureLandsCount</url-pattern>
     </servlet-mapping>
 </web-app>
