@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.nsk.lizard.game.common.GameProperties;
-import ru.nsk.lizard.game.common.PropertyUtil;
 import ru.nsk.lizard.game.db.common.Filter;
 import ru.nsk.lizard.game.db.entities.Creature;
 import ru.nsk.lizard.game.db.entities.CreatureSkillLink;
@@ -37,7 +36,10 @@ public class GameCore {
 
     @PostConstruct
     public void init() {
-        initMap(GameProperties.WORLD_WIDTH, GameProperties.WORLD_LENGTH);
+        //todo: разобраться почему эта хрень иногда умирает при рестарте
+//        initMap(GameProperties.WORLD_WIDTH, GameProperties.WORLD_LENGTH);
+
+        initMap(3, 4);
     }
 
     public void initMap(int width, int length) {

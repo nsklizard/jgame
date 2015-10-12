@@ -14,9 +14,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class CellProcessor extends Thread {
     Logger log = Logger.getLogger(CellProcessor.class.getName());
-    private Object lock = new Object();
 
-    //    private List<Creature> queue = new LinkedList<Creature>();
     private BlockingQueue<Creature> queue = new LinkedBlockingQueue<>();
     private Creature owner = null;
     private GameCore gameCore;

@@ -11,24 +11,30 @@ import java.util.Properties;
 /**
  * Created by lizard on 13.10.2015.
  */
-public class PropertyUtil {
-    private static Logger log = Logger.getLogger(PropertyUtil.class);
+public class PropertyUtils {
+    private static Logger log = Logger.getLogger(PropertyUtils.class);
     private static final String PROP_FILE_PATH = System.getProperty("catalina.base")+File.separator+"conf"+File.separator+"game.properties";
 
-    private static Properties properties;
-    static{
-        properties = new Properties();
+    private static Properties properties = loadResource();
+
+    private static Properties loadResource() {
+        Properties prop = new Properties();
         try {
             File resourceFile = new File(PROP_FILE_PATH);
             InputStream stream = new FileInputStream(resourceFile);
-            properties.load(stream);
+            prop.load(stream);
         } catch (IOException e) {
-            log.error(e);
-            throw new RuntimeException(e);
+            log.warn(e.getMessage());
         }
+        return prop;
+    }
+
+    public static Properties getProperties() {
+        return properties;
     }
 
     public static String get(String propertyKey){
         return properties.getProperty(propertyKey);
     }
 }
+

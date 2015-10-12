@@ -1,6 +1,7 @@
 package ru.nsk.lizard.game.logic;
 
 
+import org.apache.log4j.Logger;
 import ru.nsk.lizard.game.db.entities.Creature;
 import ru.nsk.lizard.game.db.entities.Skill;
 import ru.nsk.lizard.game.db.enums.SkillType;
@@ -11,6 +12,8 @@ import java.util.Map;
  * Created by dkim on 07.10.2015.
  */
 public class BattleCalculator {
+    private static Logger log = Logger.getLogger(BattleCalculator.class);
+
     public static Creature fight(Creature attacker, Creature defender) {
         //TODO: refactor
 
@@ -41,17 +44,17 @@ public class BattleCalculator {
         Map<Skill, Long> c1Skills = attacker.getSkills();
         for (Skill s : c1Skills.keySet()) {
             if (s.getType().equals(SkillType.OFFENSE)) {
-                c1AttackFire += s.getFire() * c1Skills.get(s);
-                c1AttackWater += s.getWater() * c1Skills.get(s);
-                c1AttackAir += s.getAir() * c1Skills.get(s);
-                c1AttackEarth += s.getEarth() * c1Skills.get(s);
-                c1AttackEther += s.getPoison() * c1Skills.get(s);
+                c1AttackFire += s.getFire() * randomize(c1Skills.get(s));
+                c1AttackWater += s.getWater() * randomize(c1Skills.get(s));
+                c1AttackAir += s.getAir() * randomize(c1Skills.get(s));
+                c1AttackEarth += s.getEarth() * randomize(c1Skills.get(s));
+                c1AttackEther += s.getPoison() * randomize(c1Skills.get(s));
             } else if (s.getType().equals(SkillType.DEFENCE)) {
-                c1DefenceFire += s.getFire() * c1Skills.get(s);
-                c1DefenceWater += s.getWater() * c1Skills.get(s);
-                c1DefenceAir += s.getAir() * c1Skills.get(s);
-                c1DefenceEarth += s.getEarth() * c1Skills.get(s);
-                c1DefenceEther += s.getPoison() * c1Skills.get(s);
+                c1DefenceFire += s.getFire() * (c1Skills.get(s));
+                c1DefenceWater += s.getWater() * (c1Skills.get(s));
+                c1DefenceAir += s.getAir() * (c1Skills.get(s));
+                c1DefenceEarth += s.getEarth() * (c1Skills.get(s));
+                c1DefenceEther += s.getPoison() * (c1Skills.get(s));
             }
         }
 
@@ -59,11 +62,11 @@ public class BattleCalculator {
         Map<Skill, Long> c2Skills = defender.getSkills();
         for (Skill s : c2Skills.keySet()) {
             if (s.getType().equals(SkillType.OFFENSE)) {
-                c2AttackFire += s.getFire() * c2Skills.get(s);
-                c2AttackWater += s.getWater() * c2Skills.get(s);
-                c2AttackAir += s.getAir() * c2Skills.get(s);
-                c2AttackEarth += s.getEarth() * c2Skills.get(s);
-                c2AttackEther += s.getPoison() * c2Skills.get(s);
+                c2AttackFire += s.getFire() * randomize(c2Skills.get(s));
+                c2AttackWater += s.getWater() * randomize(c2Skills.get(s));
+                c2AttackAir += s.getAir() * randomize(c2Skills.get(s));
+                c2AttackEarth += s.getEarth() * randomize(c2Skills.get(s));
+                c2AttackEther += s.getPoison() * randomize(c2Skills.get(s));
             } else if (s.getType().equals(SkillType.DEFENCE)) {
                 c2DefenceFire += s.getFire() * c2Skills.get(s);
                 c2DefenceWater += s.getWater() * c2Skills.get(s);
@@ -85,10 +88,34 @@ public class BattleCalculator {
                 + (c2AttackEarth - c1DefenceEarth < 0 ? 0 : (c2AttackEarth - c1DefenceEarth))
                 + (c2AttackEther - c1DefenceEther < 0 ? 0 : (c2AttackEther - c1DefenceEther));
 
+        log.debug("Fight total. Attacker with id "+attacker.getId()+" and name '"+attacker.getName()+"' has "+totalC1DPS+"dps");
+        log.debug("Fight total. Defender with id "+defender.getId()+" and name '"+defender.getName()+"' has "+totalC2DPS+"dps");
+
         if (totalC1DPS>totalC2DPS){
             return attacker;
         }
 
         return defender;
+    }
+
+    private static long randomize(Long power){
+        int sw = power.intValue();
+        switch(sw){
+            case 0:
+                return power;
+            case 1:
+                return power*roll(90.0);
+            case 2:
+                return power*roll(80.0);
+            case 3:
+                return power*roll(70.0);
+        }
+        return power;
+    }
+
+    private static int roll(double percentage){
+        int ret = (Math.random() * 100) <= percentage ? 1 : 0;
+        log.debug("percentage="+percentage+", ret="+ret);
+        return ret;
     }
 }

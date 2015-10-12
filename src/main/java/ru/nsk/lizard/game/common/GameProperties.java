@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class GameProperties {
+    public static final String MAP_ATTR = "MAP_ATTR";
     public static int WORLD_WIDTH;
     public static int WORLD_LENGTH;
 
@@ -17,7 +18,7 @@ public class GameProperties {
 
     private static int getIntProperty(String propertyName, int defaultInt){
         try {
-            return Integer.parseInt(PropertyUtil.get(propertyName));
+            return Integer.parseInt(PropertyUtils.get(propertyName));
         }catch (NumberFormatException e){
             return defaultInt;
         }
