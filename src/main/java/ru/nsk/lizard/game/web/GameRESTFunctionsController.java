@@ -5,11 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.nsk.lizard.game.db.common.Filter;
 import ru.nsk.lizard.game.db.entities.Creature;
+import ru.nsk.lizard.game.db.entities.GameMap;
 import ru.nsk.lizard.game.db.entities.Skill;
 import ru.nsk.lizard.game.db.services.CreatureService;
+import ru.nsk.lizard.game.db.services.GameMapService;
 import ru.nsk.lizard.game.logic.GameCore;
 import ru.nsk.lizard.game.web.jsonpojo.CreaturePOJO;
+import ru.nsk.lizard.game.web.jsonpojo.GameMapPOJO;
 import ru.nsk.lizard.game.web.jsonpojo.SkillPOJO;
 
 import java.util.LinkedList;
@@ -27,6 +31,9 @@ public class GameRESTFunctionsController {
     @Autowired
     CreatureService creatureService;
 
+    @Autowired
+    GameMapService gameMapService;
+
     @RequestMapping("/settleCreature")
     public ResponseEntity<String> settleCreature(@RequestParam(value = "x") int x,
                                  @RequestParam(value = "y") int y,
@@ -36,9 +43,20 @@ public class GameRESTFunctionsController {
         return new ResponseEntity<String>("creature with id=" + creatureId + " settled in x=" + x + ", y=" + y, HttpStatus.OK);
     }
 
+    @RequestMapping("/getMap")
+    public ResponseEntity<List<GameMapPOJO>> getMap() {
+        List<GameMap> map = gameMapService.search(new Filter());
+
+        List<GameMapPOJO> ret = new LinkedList<>();
+        for (GameMap gm : map) {
+            ret.add(new GameMapPOJO(gm));
+        }
+
+        return new ResponseEntity<List<GameMapPOJO>>(ret, HttpStatus.OK);
+    }
+
     @RequestMapping("/getSkills")
     public ResponseEntity<List<SkillPOJO>> getSkills() {
-        Gson gson = new Gson();
         List<Skill> skills = gameCore.getSkills();
 
         List<SkillPOJO> ret = new LinkedList<>();

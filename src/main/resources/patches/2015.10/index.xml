@@ -20,4 +20,9 @@
         <comment>Default 0</comment>
         <sqlFile encoding="utf8" path="patches/2015.10/2015-10-12--0013-dkim.sql"/>
     </changeSet>
+
+    <changeSet id="2015-10-13--0002-dkim" author="dkim">
+        <comment>made game_map base entity</comment>
+        <sqlFile encoding="utf8" path="patches/2015.10/2015-10-13--0002-dkim.sql"/>
+    </changeSet>
 </databaseChangeLog>

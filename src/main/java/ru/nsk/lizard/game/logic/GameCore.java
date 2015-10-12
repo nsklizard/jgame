@@ -8,6 +8,7 @@ import ru.nsk.lizard.game.db.entities.Creature;
 import ru.nsk.lizard.game.db.entities.CreatureSkillLink;
 import ru.nsk.lizard.game.db.entities.Skill;
 import ru.nsk.lizard.game.db.services.CreatureService;
+import ru.nsk.lizard.game.db.services.GameMapService;
 import ru.nsk.lizard.game.db.services.SkillService;
 
 import javax.annotation.PostConstruct;
@@ -27,6 +28,9 @@ public class GameCore {
     @Autowired
     SkillService skillService;
 
+    @Autowired
+    GameMapService gameMapService;
+
     CellProcessor[][] cp = null;
 
     @PostConstruct
@@ -38,7 +42,7 @@ public class GameCore {
         cp = new CellProcessor[width][length];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < length; y++) {
-                cp[x][y] = new CellProcessor(x,y,this);
+                cp[x][y] = new CellProcessor(x,y,this, gameMapService);
                 cp[x][y].start();
             }
         }

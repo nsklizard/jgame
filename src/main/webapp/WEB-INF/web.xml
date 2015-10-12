@@ -20,7 +20,7 @@
 
     <servlet-mapping>
         <servlet-name>rest</servlet-name>
-        <url-pattern>/showMap</url-pattern>
+        <url-pattern>/getMap</url-pattern>
         <url-pattern>/settleCreature</url-pattern>
         <url-pattern>/getSkills</url-pattern>
         <url-pattern>/greeting</url-pattern>
