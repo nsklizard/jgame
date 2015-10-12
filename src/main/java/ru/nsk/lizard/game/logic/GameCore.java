@@ -36,10 +36,7 @@ public class GameCore {
 
     @PostConstruct
     public void init() {
-        //todo: разобраться почему эта хрень иногда умирает при рестарте
-//        initMap(GameProperties.WORLD_WIDTH, GameProperties.WORLD_LENGTH);
-
-        initMap(3, 4);
+        initMap(GameProperties.WORLD_WIDTH, GameProperties.WORLD_LENGTH);
     }
 
     public void initMap(int width, int length) {
