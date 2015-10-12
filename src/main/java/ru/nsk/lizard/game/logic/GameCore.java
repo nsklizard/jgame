@@ -3,6 +3,8 @@ package ru.nsk.lizard.game.logic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import ru.nsk.lizard.game.common.GameProperties;
+import ru.nsk.lizard.game.common.PropertyUtil;
 import ru.nsk.lizard.game.db.common.Filter;
 import ru.nsk.lizard.game.db.entities.Creature;
 import ru.nsk.lizard.game.db.entities.CreatureSkillLink;
@@ -35,23 +37,25 @@ public class GameCore {
 
     @PostConstruct
     public void init() {
-        initMap(3, 3);
+        initMap(GameProperties.WORLD_WIDTH, GameProperties.WORLD_LENGTH);
     }
 
     public void initMap(int width, int length) {
         cp = new CellProcessor[width][length];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < length; y++) {
-                cp[x][y] = new CellProcessor(x,y,this, gameMapService);
+                cp[x][y] = new CellProcessor(x, y, this, gameMapService);
                 cp[x][y].start();
             }
         }
     }
 
     public void settleCreature(int x, int y, Creature creature) {
-        //TODO: сделать проверку на координаты
-//        Creature creature = creatureService.findById(creatureId);
+        if (x < 0 || y < 0 || x >= GameProperties.WORLD_WIDTH || y >= GameProperties.WORLD_LENGTH) {
+            return;
+        }
         cp[x][y].addCreature(creature);
+
     }
 
     public List<Skill> getSkills() {

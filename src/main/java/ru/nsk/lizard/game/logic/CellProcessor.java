@@ -85,6 +85,8 @@ public class CellProcessor extends Thread {
      * Сохранить в БД текущее положение вещей
      */
     private void saveToDB() {
+        //TODO: подумать про оптимизацию сохранения в БД
+        //может быть придумать пул, который будет дампить в бд через очередь
         GameMap cell = gameMapService.get(x, y);
         if (cell == null) {
             cell = new GameMap();
