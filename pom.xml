@@ -75,11 +75,6 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>4.0.5.RELEASE</version>
-        </dependency>
 
         <!-- ===v================================ Quartz framework ================================================== -->
         <!--<dependency>-->
@@ -157,8 +152,31 @@
         </dependency>
 
 
+        <!-- Сам викет -->
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-core</artifactId>
+            <version>7.1.0</version>
+        </dependency>
+
+        <!-- Для аннотации MountPath-->
+        <dependency>
+            <groupId>org.wicketstuff</groupId>
+            <artifactId>wicketstuff-annotation</artifactId>
+            <version>7.1.0</version>
+        </dependency>
+
+        <!-- Чтобы использовать спринговые бины на страницах викет-->
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-spring</artifactId>
+            <version>7.1.0</version>
+        </dependency>
+
 
     </dependencies>
+
+
 
     <build>
         <plugins>

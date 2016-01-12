@@ -28,4 +28,37 @@
         <url-pattern>/createCreature</url-pattern>
         <url-pattern>/getCreatureLandsCount</url-pattern>
     </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>mapjsp</servlet-name>
+        <jsp-file>/jsp/map.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>mapjsp</servlet-name>
+        <url-pattern>/map</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- wicket -->
+    <filter>
+        <filter-name>wicket.myproject</filter-name>
+        <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
+        <init-param>
+            <param-name>applicationClassName</param-name>
+            <param-value>ru.nsk.lizard.game.WicketApplication</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>wicket.myproject</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- викет, для подключения спринговых бинов-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 </web-app>
