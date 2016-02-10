@@ -1,6 +1,8 @@
 package ru.nsk.lizard.game.ui;
 
 
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
@@ -30,8 +32,12 @@ public class HomePage extends WebPage {
 
         // TODO Add your page's components here
 
+        add(new Button("", Model.of(">>>")));
+
         List<GameMap> map = gameMapService.search(new Filter());
-        int a = 0;
+        for (GameMap gm : map) {
+        }
+
 
     }
 }
