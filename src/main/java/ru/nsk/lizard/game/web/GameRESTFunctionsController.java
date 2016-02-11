@@ -10,6 +10,7 @@ import ru.nsk.lizard.game.db.entities.GameMap;
 import ru.nsk.lizard.game.db.entities.Skill;
 import ru.nsk.lizard.game.db.services.CreatureService;
 import ru.nsk.lizard.game.db.services.GameMapService;
+import ru.nsk.lizard.game.db.services.SkillService;
 import ru.nsk.lizard.game.logic.GameCore;
 import ru.nsk.lizard.game.web.jsonpojo.CreaturePOJO;
 import ru.nsk.lizard.game.web.jsonpojo.GameMapPOJO;
@@ -33,6 +34,9 @@ public class GameRESTFunctionsController {
     @Autowired
     GameMapService gameMapService;
 
+    @Autowired
+    SkillService skillService;
+
     @RequestMapping("/settleCreature")
     public ResponseEntity<String> settleCreature(@RequestParam(value = "x") int x,
                                  @RequestParam(value = "y") int y,
@@ -55,8 +59,9 @@ public class GameRESTFunctionsController {
     }
 
     @RequestMapping("/getSkills")
-    public ResponseEntity<List<SkillPOJO>> getSkills() {
-        List<Skill> skills = gameCore.getSkills();
+    public ResponseEntity<List<SkillPOJO>> getSkills(@RequestParam(value = "quantity") int quantity) {
+//        List<Skill> skills = gameCore.getSkills();
+        List<Skill> skills = skillService.getRandomSkills(quantity);
 
         List<SkillPOJO> ret = new LinkedList<>();
         for (Skill skill : skills) {
