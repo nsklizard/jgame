@@ -6,6 +6,7 @@ import ru.nsk.lizard.game.db.entities.Skill;
  * Created by lizard on 11.10.2015.
  */
 public class SkillPOJO {
+    private long id;
     private String name;
     private long fire;
     private long water;
@@ -18,6 +19,7 @@ public class SkillPOJO {
     }
 
     public SkillPOJO(Skill skill) {
+        this.id = skill.getId();
         this.name = skill.getName();
         this.fire = skill.getFire();
         this.water = skill.getWater();
@@ -25,6 +27,14 @@ public class SkillPOJO {
         this.earth = skill.getEarth();
         this.poison = skill.getPoison();
         this.type = skill.getType().name();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

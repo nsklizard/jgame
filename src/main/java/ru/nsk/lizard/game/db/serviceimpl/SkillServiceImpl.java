@@ -17,14 +17,19 @@ public class SkillServiceImpl extends BaseServiceImpl<Skill, Long> implements Sk
 
     @Override
     public List<Skill> getRandomSkills(int quantity) {
+        //TODO: переделать на другой алгоритм, как вариант:
+        //в java делаем рандом и получаем необходимо к-во id-шников.
+        //потом делаем select .... where id in(...)
+
+
         //http://blog.rhodiumtoad.org.uk/2009/03/08/selecting-random-rows-from-a-table/
         return em.createNativeQuery("select * from skills where id in\n" +
                 "        (select floor(random() * (max_id - min_id + 1)) + min_id\n" +
-                "           from generate_series(1,"+quantity*2+"),\n" +
+                "           from generate_series(1,"+(quantity*2+5)+"),\n" +
                 "                (select max(id) as max_id,\n" +
                 "                        min(id) as min_id\n" +
                 "                   from skills) s1\n" +
-                "         limit "+quantity*2+")\n" +
+                "         limit "+(quantity*2+5)+")\n" +
                 " order by random() limit " + quantity, Skill.class).getResultList();
     }
 }

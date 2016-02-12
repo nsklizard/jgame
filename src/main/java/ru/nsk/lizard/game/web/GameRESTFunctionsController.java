@@ -73,6 +73,8 @@ public class GameRESTFunctionsController {
 
     @RequestMapping(value = "/createCreature", method = RequestMethod.POST)
     public ResponseEntity<Long> createCreature(@RequestBody CreaturePOJO creaturePOJO) {
+        //todo: validate creature
+
         Long id = gameCore.createCreature(creaturePOJO.getName(), creaturePOJO.getSkills());
         if (id != null) {
             return new ResponseEntity<Long>(id, HttpStatus.OK);
